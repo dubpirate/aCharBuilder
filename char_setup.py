@@ -1,51 +1,58 @@
-import char_setup_checks
-import char_classes
-from char_setup_checks import *
-from char_classes import *
+#from char_classes import * #What is char_classes?
+from character_class import *
+import pickle
 
-def start_up():
-    heading = '====================================='
-    print(heading)
-    print('===========Start Character===========')
-    print(heading)
-    print('')
-    char_name = str(input('>> First things first, Character Name: '))
-    print('>> Duuuuuude. Sick name, duuude.')
+#
+#   Info gotten is:
+#       1: Name
+#       2: Race
+#       3: Class
+#       4: Stats
+#
+#########################################################
+#
+#   Made attributes and stats into dictionaries.
+#   attribute keys are now : 'name', 'race', 'class'
+#   stats keys are now: 'stats' and 'mods'
+#
 
-    char_race = race()
+heading = '====================================='
+print(heading)
+print('========== Start Character ==========')
+print(heading)
+print('>>')
+'''
+char_name = str(input('>> First things first, Character Name: '))
+print('>>')
+print('>> Duuuuuude. Sick name, duuude.')
+print('>>')
+'''
+print('>> So, brah, do you want to make or load a char, bruh?')
 
-    char_class = c_class()
+while True:
+    print('>> load -- new')
+    load_check = str(input('>> '))
 
-    print('>> Braaaaaah. Wiiiickeeeeed.')
-    print(heading, '\n', heading)
+    if load_check == 'new':
+        print('\n'+heading+'\n\n'+heading+'\n>>')
+        char_name = str(input('>> First things first, Character Name: '))
+        print('>>')
+        print('>> Duuuuuude. Sick name, duuude.')
+        print('>>')
+        run = Character(char_name, False)
 
-    ### Now the Stats
+    elif load_check == 'load':
+        print('>> Sick, brah. What\'s your bud\'s name?')
+        now = str(input('>> '))
 
-    print('=== Now the totally rad part, brah ===')
-    print('=============== STATS ===============')
+        try:
+            run = Character(now, True) #loading the charater from pcikel.
+            break
 
-    STR = stat_check('>> Put your strength stat, brah: ')
-    STR_mod = stat_mod(STR)
-    print('>> Radical, man. Your strenght mod is', STR_mod, 'btdubs.')
-
-    DEX = stat_check('>> Dex Time dude: ')
-    DEX_mod = stat_mod(DEX)
-    print('>> Sweeeeet.', str(DEX_mod),'ain\'t bad, bro')
-
-    CON = stat_check('>> Con (it\'s important too) :')
-    CON_mod = stat_mod(CON)
-    print('>> Broooo. You\'re tough as balls, broo.')
-
-    WIS = stat_check('>> Wissy wissard hahaha: ')
-    WIS_mod = stat_mod(WIS)
-
-    INT = stat_check('>> Int is for nerds: ')
-    INT_mod = stat_mod(INT)
-
-    CHA = stat_check('>> Cha-Ching Charismo bro: ')
-    CHA_mod = stat_mod(CHA)
-    print('Time to pick up the babes am I right brah hahaha.')
-
-    char_attributes = [char_name,char_race,char_class]
-    char_stats = [[STR,DEX,CON,WIS,INT,CHA], [STR_mod,DEX_mod,CON_mod,WIS_mod,INT_mod,CHA_mod]]
-    return char_attributes, char_stats
+        except FileNotFoundError:
+            print(now)
+            print('>> Uh oh spaghetti bro\'s')
+            print(">> Looks like that isn't a character yet...")
+            print(">> (or maybe it's a ghost bro hahah)")
+            print('\n'+heading)
+            print(heading+'\n')
