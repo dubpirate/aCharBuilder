@@ -28,9 +28,9 @@ foo = 'bar'
 Dwarf       = {'abil_increase':{'CON':2},
                'speed':25,
                'vision':{'dim':60,'dark':'bw'}, #bw means black and white only
-               'special':You are proficient with History if you\'re checking the origin of a cut stone.',
+               'special':'You are proficient with History if you\'re checking the origin of a cut stone.',
                'profs':{
-                    'weps':{'battleaxe':True,'handaxe':True,'throwing hammer':True, 'warhammer':True},
+                    'weps':['battleaxe','handaxe','throwing hammer', 'warhammer'],
                     'tools':[1, 'smith','brewer','mason'] # slice it so that ['tools'][0] comes up as the amount of tools you can be proficient with and ['tools'][1:] are the choices
                     },
                'res':'poison', #Resistances from types of damage
